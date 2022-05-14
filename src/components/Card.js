@@ -1,14 +1,19 @@
-const Card = (imgSrc, title, desc) => {
+const Card = (imgSrc, title, desc, date) => {
     return (
-        `<div class="card pt-3" style="width: 18rem;">
+        `<div class="col-lg-4 col-12">
+        <div class="card pt-3" dir="auto">
         <img src="${imgSrc}" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">${title}</h5>
-            <hr>
-            <p class="card-text">${desc}</p>
-            <hr>
-            <h6 class="badge bg-primary">${date}</h6>
+            <hr class="my-1">
+            <p class="card-text m-">${desc}</p>
+            <hr class="m-0 mt-2">
+            <div class="py-2"><h6 class="badge bg-primary">${date}</h6></div>
+            
         </div>
+    </div>
     </div>`
     )
 }
+
+export default Card;
