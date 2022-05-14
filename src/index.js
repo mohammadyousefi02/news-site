@@ -1,10 +1,13 @@
+//get dom elements
 const input = document.querySelector("input")
 const searchBtn = document.querySelector("#search-btn")
 const newsList = document.querySelector("#news-list")
 const mainHeaderText = document.querySelector(".main-header-text")
 const spinner = document.querySelector(".spinner-border")
 
+//import components
 import Card from "./components/Card.js";
+
 
 const API = (topic) => `https://newsapi.org/v2/everything?q=${topic}&apiKey=53cee031e78d4336b49bd31dd7a76ebf`;
 
@@ -21,6 +24,7 @@ class NewsManager {
     render = () => {
         this.getNewsEvent(this.searchBtn, this.input)
     }
+    //send request to api and get datas
     getNews = async (topic) => {
         this.errorText.innerText = ""
         this.showSpinner()
@@ -55,13 +59,16 @@ class NewsManager {
             this.list.innerHTML += Card(article.urlToImage, article.title, article.description, farvardin.gregorianToSolar(Number(year), Number(month), Number(day), "string"))
         })
     }
+    //if nothing find show this error
     findError = () => {
         this.list.innerHTML = ""
         this.errorText.innerText = "results: 0 please search something else";
     }
+    //show the total results number 
     getResult = (results) => {
         this.errorText.innerText = `results: ${results} `;
     }
+    //if request status is false show this error
     callApiError = () => {
         this.list.innerHTML = ""
         this.errorText.innerText = "there is something wrong please try again"
