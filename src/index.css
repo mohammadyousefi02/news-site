@@ -4,6 +4,14 @@ body {
     height: 100%;
 }
 
+body {
+    background-color: #F8F9FB;
+}
+
 header {
     background-color: #393D46;
+}
+
+.card {
+    height: 500px;
 }
