@@ -8,7 +8,7 @@ const Card = (imgSrc, title, desc, date) => {
             <hr class="my-1">
             <p class="card-text m-">${desc}</p>
             <hr class="m-0 mt-2">
-            <div class="py-2"><h6 class="badge bg-primary">${date}</h6></div>
+            <div class="py-2"><h6 class="badge bg-primary font-Anjoman">${date}</h6></div>
             
         </div>
     </div>

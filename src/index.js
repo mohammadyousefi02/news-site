@@ -56,22 +56,24 @@ class NewsManager {
             let [year, month, day] = date;
             (month[0] == 0) ? month = month[1]: null;
             if (day[0] == 0) day = day[1];
-            this.list.innerHTML += Card(article.urlToImage, article.title, article.description, farvardin.gregorianToSolar(Number(year), Number(month), Number(day), "string"))
+            //change date format
+            const newDate = farvardin.gregorianToSolar(Number(year), Number(month), Number(day), "string").split("-").join("/")
+            this.list.innerHTML += Card(article.urlToImage, article.title, article.description, newDate)
         })
     }
     //if nothing find show this error
     findError = () => {
         this.list.innerHTML = ""
-        this.errorText.innerText = "results: 0 please search something else";
+        this.errorText.innerText = "تعداد نتایج : 0 لطفا چیز دیگه ای رو امتحان کن";
     }
     //show the total results number 
     getResult = (results) => {
-        this.errorText.innerText = `results: ${results} `;
+        this.errorText.innerText = `تعداد نتایج : ${results} `;
     }
     //if request status is false show this error
     callApiError = () => {
         this.list.innerHTML = ""
-        this.errorText.innerText = "there is something wrong please try again"
+        this.errorText.innerText = "مشکلی پیش اومده لطفا دوباره تلاش کنید"
     }
     showSpinner = () => {
         this.spinner.classList.remove('d-none')
