@@ -14,7 +14,6 @@ class NewsManager {
         this.input = input;
         this.searchBtn = searchBtn;
         this.list = list;
-        console.log(listText)
         this.errorText = listText;
         this.spinner = spinner;
         this.render()
@@ -27,7 +26,6 @@ class NewsManager {
         this.showSpinner()
         try {
             const res = await fetch(API(topic))
-            console.log(API(topic))
             const obj = await res.json();
             this.hideSpinner()
             if (obj.totalResults == 0) this.findError()
@@ -50,7 +48,11 @@ class NewsManager {
     createCard = (arr) => {
         this.list.innerHTML = "";
         arr.forEach(article => {
-            this.list.innerHTML += Card(article.urlToImage, article.title, article.description, article.publishedAt.slice(0, 10))
+            const date = article.publishedAt.slice(0, 10).split("-")
+            let [year, month, day] = date;
+            (month[0] == 0) ? month = month[1]: null;
+            if (day[0] == 0) day = day[1];
+            this.list.innerHTML += Card(article.urlToImage, article.title, article.description, farvardin.gregorianToSolar(Number(year), Number(month), Number(day), "string"))
         })
     }
     findError = () => {
@@ -73,4 +75,5 @@ class NewsManager {
 
 }
 
-const customNewsManager = new NewsManager(input, searchBtn, newsList, mainHeaderText, spinner)
+
+const customNewsManager = new NewsManager(input, searchBtn, newsList, mainHeaderText, spinner);
